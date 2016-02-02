@@ -20,6 +20,11 @@ class FindValueTest(unittest.TestCase):
         index = 0
         self.assertEqual(find_value(l, val), index)
 
+    def test_find_value_not_found(self):
+        l = [1,2,3]
+        val = 333
+        self.assertIsNone(find_value(l, val))
+
 def find_value(x_sorted, val):
     """Search for a given value in a sorted list of integers using 
        Binary Search. Running time: O(lgn); In place.
@@ -33,6 +38,8 @@ def find_value(x_sorted, val):
         half_index = len(x_sorted) / 2
         if val == x_sorted[half_index]:
             return half_index
+        elif len(x_sorted) == 1:
+            return
         elif val < x_sorted[half_index]:
             index = find_value(x_sorted[:half_index], val)
             shift_index = 0
