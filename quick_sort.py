@@ -61,6 +61,5 @@ def quick_sort_randomized(x):
             pivot_greater.append(element)
     return quick_sort(pivot_less) + pivot_equal + quick_sort(pivot_greater)
 
-
 if __name__ == '__main__':
     unittest.main()
