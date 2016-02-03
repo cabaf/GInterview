@@ -51,5 +51,46 @@ def interlace_string(s1, s2):
             return helper_interlace_string(s1[1:], s2[1:], out + s1[0] + s2[0])
     return helper_interlace_string(s1, s2, '')
 
+
+"""
+Write a function to detect if two strings are anagrams or not.
+For the sake of simplicity, we will assume that the two strings in question
+are of equal length and that they are made up of symbols from the set of
+26 lowercase alphabetic characters.
+s1: python; s2:typhon areanagrams(s1, s2): True
+"""
+class AreAnagramsTest(unittest.TestCase):
+    def test_are_anagrams(self):
+        s1 = 'python'
+        s2 = 'typhon'
+        self.assertTrue(are_anagrams(s1, s2))
+
+    def test_are_anagrams_palindrome(self):
+        s1 = 'madam'
+        s2 = 'madam'
+        self.assertTrue(are_anagrams(s1, s2))
+
+    def test_are_anagrams_false(self):
+        s1 = 'python'
+        s2 = 'java'
+        self.assertFalse(are_anagrams(s1, s2))
+
+def are_anagrams(s1, s2):
+    """
+    This program check wheter or not two strings are anagrams.
+    It uses a hash table to count the ocurrences of each letter in the strings.
+    """
+    d1 = dict.fromkeys(list(s1), 0)
+    d2 = dict.fromkeys(list(s2), 0)
+    for i, j in zip(list(s1), list(s2)):
+        d1[i] += 1
+        d2[j] += 1
+    for key in d1:
+        if not d2.has_key(key):
+            return False
+        if d1[key] != d2[key]:
+            return False
+    return True
+
 if __name__ == '__main__':
     unittest.main()
