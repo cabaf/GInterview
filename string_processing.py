@@ -92,5 +92,32 @@ def are_anagrams(s1, s2):
             return False
     return True
 
+"""
+Write a function to detect if a string is a pangram or not.
+For the sake of simplicity, we will assume that the string in question
+is made up of symbols from the set of 26 lowercase alphabetic characters.
+"""
+class IsPangramTest(unittest.TestCase):
+    def test_is_pangram(self):
+        import string
+        s = string.ascii_lowercase.join('zyx')
+        self.assertTrue(is_pangram(s))
+
+    def test_is_pangram_false(self):
+        import string
+        s = string.ascii_lowercase[:-2]
+        self.assertFalse(is_pangram(s))
+
+def is_pangram(s):
+    import string
+    p = string.ascii_lowercase
+    d = dict.fromkeys(list(p), 0)
+    for e in s:
+        d[e] += 1
+    for count in d.values():
+        if not count:
+            return False
+    return True
+
 if __name__ == '__main__':
     unittest.main()
